@@ -1,9 +1,9 @@
-flutter_native_splash:
-  android: true
-  color: "#1C79D4"
-  image: "assets/ers_logo.png"
-  background_image: "assets/splash_bg.png"
-  android_12:
-    color: "#1C79D4"
-    image: "assets/ers_logo.png"
-    background_image: "assets/splash_bg.png"
+#flutter_native_splash:
+#  android: true
+#  color: "#1C79D4"
+#  image: "assets/ers_logo.png"
+#  background_image: "assets/splash_bg.png"
+#  android_12:
+#    color: "#1C79D4"
+#    image: "assets/ers_logo.png"
+#    background_image: "assets/splash_bg.png"
