@@ -7,7 +7,7 @@ class Homescreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Center(child: Image.asset("assets/ers_logo_splash.png")),
+      body: Center(child: Image.asset("assets/ers_logo.png")),
     );
   }
 }
