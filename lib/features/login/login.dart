@@ -289,24 +289,23 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool _checkforbutton = false;
   String? _errorMessages;
   final _loginController = TextEditingController();
   final _passwordController = TextEditingController();
-
-  bool _checkforbutton = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _loginController.addListener(_updateButtonState);
-    _passwordController.addListener(_updateButtonState);
-  }
 
   @override
   void dispose() {
     _loginController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loginController.addListener(_updateButtonState);
+    _passwordController.addListener(_updateButtonState);
   }
 
   void _updateButtonState() {
