@@ -1,9 +1,9 @@
+import 'package:ers_app/common/theme/themeData.dart';
+import 'package:ers_app/features/login/login.dart';
 import 'package:flutter/material.dart';
 
-import 'HomeScreen.dart';
-
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,12 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'eResources Scheduler',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: Homescreen(),
+      theme: appTheme,
+      home: LoginScreen(),
     );
   }
 }
