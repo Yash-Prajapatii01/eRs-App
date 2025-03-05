@@ -119,7 +119,7 @@ class ButtonCustom extends StatelessWidget {
           text,
           style: TextStyle(
             color: textColor ?? Colors.white,
-            fontWeight: FontWeight.w300,
+            fontWeight: FontWeight.w500,
             fontSize: responsive.getFontSize(16), // Responsive font size
           ),
         ),
