@@ -371,6 +371,7 @@ class _SavePasswordScreenState extends State<SavePasswordScreen> {
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Stack(
+          alignment: Alignment.center,
           children: [
             // Background image at the bottom
             Positioned.fill(
@@ -455,7 +456,7 @@ class _SavePasswordScreenState extends State<SavePasswordScreen> {
 
                   TextFieldCustom(
                     hintText: "Create new password",
-                    obscureText: false,
+                    obscureText: true,
                     controller: _passwordController,
                   ),
                   SizedBox(height: responsive.getHeight(8)),
@@ -476,7 +477,7 @@ class _SavePasswordScreenState extends State<SavePasswordScreen> {
 
                   TextFieldCustom(
                     hintText: "Confirm new password",
-                    obscureText: false,
+                    obscureText: true,
                     controller: _confirmPasswordController,
                   ),
 
@@ -546,16 +547,18 @@ class _SavePasswordScreenState extends State<SavePasswordScreen> {
             Positioned.fill(
               top: responsive.getHeight(780),
               left: responsive.getWidth(39),
-              child: Center(
-                child: SizedBox(
-                  width: responsive.getWidth(314),
-                  height: responsive.getHeight(39),
-                  child: Text(
-                    "Enbraun Technologies Private Limited.",
-                    style: TextStyle(
-                      color: Color.fromRGBO(51, 51, 51, 0.5),
-                      fontSize: responsive.getFontSize(14),
-                    ),
+              child: SizedBox(
+                width: responsive.getWidth(314),
+                height: responsive.getHeight(39),
+                child: Text.rich(
+                  TextSpan(text: "Enbraun Technologies Private Limited",
+                  children: [
+                    TextSpan(text: " © 2025", style: TextStyle(color: Color.fromRGBO(51, 51, 51, 0.5))),
+                  ]
+                  ),
+                  style: TextStyle(
+                    color: Color.fromRGBO(51, 51, 51, 0.5),
+                    fontSize: responsive.getFontSize(14),
                   ),
                 ),
               ),
@@ -565,17 +568,4 @@ class _SavePasswordScreenState extends State<SavePasswordScreen> {
       ),
     );
   }
-
-  /// Helper method to create oval shapes
-  // Widget _buildOvalShape(
-  //     ResponsiveLayout responsive, double width, double height, Color color) {
-  //   return Container(
-  //     width: responsive.getWidth(width),
-  //     height: responsive.getHeight(height),
-  //     decoration: BoxDecoration(
-  //       color: color,
-  //       borderRadius: BorderRadius.circular(responsive.getRadius(50)),
-  //     ),
-  //   );
-  // }
 }

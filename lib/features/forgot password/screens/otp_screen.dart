@@ -49,8 +49,8 @@ class _OTPScreenState extends State<OTPScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  SavePasswordScreen()), // Correct screen navigation
+            builder: (context) => SavePasswordScreen(),
+          ), // Correct screen navigation
         );
       }
     });
@@ -64,6 +64,7 @@ class _OTPScreenState extends State<OTPScreen> {
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Stack(
+          alignment: Alignment.center,
           children: [
             // Background image at the bottom
             Positioned.fill(
@@ -264,16 +265,21 @@ class _OTPScreenState extends State<OTPScreen> {
             Positioned.fill(
               top: responsive.getHeight(780),
               left: responsive.getWidth(39),
-              child: Center(
-                child: SizedBox(
-                  width: responsive.getWidth(314),
-                  height: responsive.getHeight(39),
-                  child: Text(
-                    "Enbraun Technologies Private Limited.",
-                    style: TextStyle(
-                      color: Color.fromRGBO(51, 51, 51, 0.5),
-                      fontSize: responsive.getFontSize(14),
-                    ),
+              child: SizedBox(
+                width: responsive.getWidth(314),
+                height: responsive.getHeight(39),
+                child: Text.rich(
+                  TextSpan(
+                      text: "Enbraun Technologies Private Limited",
+                      children: [
+                        TextSpan(
+                            text: " © 2025",
+                            style: TextStyle(
+                                color: Color.fromRGBO(51, 51, 51, 0.5))),
+                      ]),
+                  style: TextStyle(
+                    color: Color.fromRGBO(51, 51, 51, 0.5),
+                    fontSize: responsive.getFontSize(14),
                   ),
                 ),
               ),
@@ -283,17 +289,4 @@ class _OTPScreenState extends State<OTPScreen> {
       ),
     );
   }
-
-  /// Helper method to create oval shapes
-  // Widget _buildOvalShape(
-  //     ResponsiveLayout responsive, double width, double height, Color color) {
-  //   return Container(
-  //     width: responsive.getWidth(width),
-  //     height: responsive.getHeight(height),
-  //     decoration: BoxDecoration(
-  //       color: color,
-  //       borderRadius: BorderRadius.circular(responsive.getRadius(50)),
-  //     ),
-  //   );
-  // }
 }
