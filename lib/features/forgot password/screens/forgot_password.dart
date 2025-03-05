@@ -80,20 +80,24 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             Positioned(
               top: responsive.getHeight(103),
               left: responsive.getWidth(-25),
-              child: buildOvalShape(responsive, 125, 59, Color.fromRGBO(235, 229, 247, 0.2)),
+              child: buildOvalShape(
+                  responsive, 125, 59, Color.fromRGBO(235, 229, 247, 0.2)),
             ),
 
             //right side oval shape
             Positioned(
               top: responsive.getHeight(187),
               left: responsive.getWidth(310),
-              child: buildOvalShape(responsive, 494, 58, Color.fromRGBO(255, 253, 230, 0.5)),),
+              child: buildOvalShape(
+                  responsive, 494, 58, Color.fromRGBO(255, 253, 230, 0.5)),
+            ),
 
             //right below oval shape
             Positioned(
               top: responsive.getHeight(440),
               left: responsive.getWidth(330),
-              child: buildOvalShape(responsive, 494, 69, Color.fromRGBO(245, 240, 254, 0.6)),
+              child: buildOvalShape(
+                  responsive, 494, 69, Color.fromRGBO(245, 240, 254, 0.6)),
             ),
 
             Positioned(
@@ -253,6 +257,23 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
               ),
             ),
+            Positioned.fill(
+              top: responsive.getHeight(780),
+              left: responsive.getWidth(39),
+              child: Center(
+                child: SizedBox(
+                  width: responsive.getWidth(314),
+                  height: responsive.getHeight(39),
+                  child: Text(
+                    "Enbraun Technologies Private Limited.",
+                    style: TextStyle(
+                      color: Color.fromRGBO(51, 51, 51, 0.5),
+                      fontSize: responsive.getFontSize(14),
+                    ),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),
