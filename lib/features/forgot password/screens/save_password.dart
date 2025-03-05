@@ -479,7 +479,10 @@ class _SavePasswordScreenState extends State<SavePasswordScreen> {
                     controller: _confirmPasswordController,
                   ),
 
-                  SizedBox(height: responsive.getHeight(20)),
+                  SizedBox(
+                      height: (_errorMessage == null)
+                          ? responsive.getHeight(42)
+                          : responsive.getHeight(16)),
 
                   // Error Message Container
                   Center(
@@ -497,7 +500,10 @@ class _SavePasswordScreenState extends State<SavePasswordScreen> {
                         : SizedBox.shrink(),
                   ),
 
-                  SizedBox(height: responsive.getHeight(20)),
+                  SizedBox(
+                      height: (_errorMessage == null)
+                          ? responsive.getHeight(0)
+                          : responsive.getHeight(16)),
 
                   // OTP Verification Button
                   ButtonCustom(

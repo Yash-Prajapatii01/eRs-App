@@ -48,7 +48,8 @@ class _OTPScreenState extends State<OTPScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => SavePasswordScreen()), // Correct screen navigation
+              builder: (context) =>
+                  SavePasswordScreen()), // Correct screen navigation
         );
       }
     });
@@ -200,7 +201,7 @@ class _OTPScreenState extends State<OTPScreen> {
 
                   SizedBox(
                     height: (_errorMessage == null)
-                        ? responsive.getHeight(42)
+                        ? responsive.getHeight(24)
                         : responsive.getHeight(19),
                   ),
                   (_errorMessage != null)
