@@ -1,7 +1,7 @@
 import 'package:ers_app/common/widgets/Responsive_Layout.dart';
 import 'package:flutter/material.dart';
 
-Widget _buildOvalShape(
+Widget buildOvalShape(
     ResponsiveLayout responsive, double width, double height, Color color) {
   return Container(
     width: responsive.getWidth(width),
