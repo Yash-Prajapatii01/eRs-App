@@ -560,16 +560,18 @@ class _LoginScreenState extends State<LoginScreen> {
             Positioned.fill(
               top: responsive.getHeight(780),
               left: responsive.getWidth(39),
-              child: Center(
-                child: SizedBox(
-                  width: responsive.getWidth(314),
-                  height: responsive.getHeight(39),
-                  child: Text(
-                    "Enbraun Technologies Private Limited.",
-                    style: TextStyle(
-                      color: Color.fromRGBO(51, 51, 51, 0.5),
-                      fontSize: responsive.getFontSize(14),
-                    ),
+              child: SizedBox(
+                width: responsive.getWidth(314),
+                height: responsive.getHeight(39),
+                child: Text.rich(
+                  TextSpan(text: "Enbraun Technologies Private Limited",
+                  children: [
+                    TextSpan(text: " © 2025", style: TextStyle(color: Color.fromRGBO(51, 51, 51, 0.5))),
+                  ]
+                  ),
+                  style: TextStyle(
+                    color: Color.fromRGBO(51, 51, 51, 0.5),
+                    fontSize: responsive.getFontSize(14),
                   ),
                 ),
               ),
