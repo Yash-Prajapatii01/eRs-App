@@ -1,4 +1,5 @@
 import 'package:ers_app/common/widgets/Responsive_Layout.dart';
+import 'package:ers_app/common/widgets/buildOvalShapes.dart';
 import 'package:ers_app/common/widgets/custom_button.dart';
 import 'package:ers_app/common/widgets/custom_textformfield.dart';
 import 'package:ers_app/features/forgot%20password/screens/otp_screen.dart';
@@ -79,42 +80,20 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             Positioned(
               top: responsive.getHeight(103),
               left: responsive.getWidth(-25),
-              child: Container(
-                width: responsive.getWidth(125),
-                height: responsive.getHeight(59),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(235, 229, 247, 0.2),
-                  borderRadius: BorderRadius.circular(responsive.getRadius(50)),
-                ),
-              ),
+              child: buildOvalShape(responsive, 125, 59, Color.fromRGBO(235, 229, 247, 0.2)),
             ),
 
             //right side oval shape
             Positioned(
               top: responsive.getHeight(187),
               left: responsive.getWidth(310),
-              child: Container(
-                width: responsive.getWidth(494),
-                height: responsive.getHeight(58),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(255, 253, 230, 0.5),
-                  borderRadius: BorderRadius.circular(responsive.getRadius(50)),
-                ),
-              ),
-            ),
+              child: buildOvalShape(responsive, 494, 58, Color.fromRGBO(255, 253, 230, 0.5)),),
 
             //right below oval shape
             Positioned(
               top: responsive.getHeight(440),
               left: responsive.getWidth(330),
-              child: Container(
-                width: responsive.getWidth(494),
-                height: responsive.getHeight(69),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(245, 240, 254, 0.6),
-                  borderRadius: BorderRadius.circular(responsive.getRadius(50)),
-                ),
-              ),
+              child: buildOvalShape(responsive, 494, 69, Color.fromRGBO(245, 240, 254, 0.6)),
             ),
 
             Positioned(

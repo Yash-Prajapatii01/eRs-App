@@ -294,6 +294,7 @@
 
 import 'package:ers_app/HomeScreen.dart';
 import 'package:ers_app/common/widgets/Responsive_Layout.dart';
+import 'package:ers_app/common/widgets/buildOvalShapes.dart';
 import 'package:ers_app/common/widgets/custom_button.dart';
 import 'package:ers_app/common/widgets/custom_textformfield.dart';
 import 'package:flutter/material.dart';
@@ -386,7 +387,7 @@ class _SavePasswordScreenState extends State<SavePasswordScreen> {
             Positioned(
               top: responsive.getHeight(103),
               left: responsive.getWidth(-25),
-              child: _buildOvalShape(
+              child: buildOvalShape(
                   responsive, 125, 59, Color.fromRGBO(235, 229, 247, 0.2)),
             ),
 
@@ -394,7 +395,7 @@ class _SavePasswordScreenState extends State<SavePasswordScreen> {
             Positioned(
               top: responsive.getHeight(187),
               left: responsive.getWidth(310),
-              child: _buildOvalShape(
+              child: buildOvalShape(
                   responsive, 494, 58, Color.fromRGBO(255, 253, 230, 0.5)),
             ),
 
@@ -402,7 +403,7 @@ class _SavePasswordScreenState extends State<SavePasswordScreen> {
             Positioned(
               top: responsive.getHeight(440),
               left: responsive.getWidth(330),
-              child: _buildOvalShape(
+              child: buildOvalShape(
                   responsive, 494, 69, Color.fromRGBO(245, 240, 254, 0.6)),
             ),
 
@@ -549,15 +550,15 @@ class _SavePasswordScreenState extends State<SavePasswordScreen> {
   }
 
   /// Helper method to create oval shapes
-  Widget _buildOvalShape(
-      ResponsiveLayout responsive, double width, double height, Color color) {
-    return Container(
-      width: responsive.getWidth(width),
-      height: responsive.getHeight(height),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(responsive.getRadius(50)),
-      ),
-    );
-  }
+  // Widget _buildOvalShape(
+  //     ResponsiveLayout responsive, double width, double height, Color color) {
+  //   return Container(
+  //     width: responsive.getWidth(width),
+  //     height: responsive.getHeight(height),
+  //     decoration: BoxDecoration(
+  //       color: color,
+  //       borderRadius: BorderRadius.circular(responsive.getRadius(50)),
+  //     ),
+  //   );
+  // }
 }
