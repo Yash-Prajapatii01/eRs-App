@@ -60,9 +60,9 @@ class TextFieldCustom extends StatelessWidget {
           // errorMaxLines: 2,
           contentPadding:  EdgeInsets.fromLTRB(
             responsive.getWidth(16), // Responsive padding
-            responsive.getHeight(20),
+            responsive.getHeight(20), //20 -> 14.5 as the text was getting clipped off due to 20 + 20 = 40
             responsive.getWidth(16),
-            responsive.getHeight(20),
+            responsive.getHeight(14.5),
           ),
           errorStyle:  TextStyle(height: responsive.getHeight(1.0)),
         ),
