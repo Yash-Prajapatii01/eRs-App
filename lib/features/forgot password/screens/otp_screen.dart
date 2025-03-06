@@ -130,16 +130,38 @@ class _OTPScreenState extends State<OTPScreen> {
                     ),
                   ),
                   SizedBox(height: responsive.getHeight(12)),
-                  Text(
-                    "A 6-digit verification code was sent\nto ••••••@enbraun.com.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontSize: responsive.getFontSize(14),
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: -0.32,
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "A 6-digit verification code was sent to",
+                        style: TextStyle(
+                          color: Color.fromRGBO(51, 51, 51, 0.5),
+                          fontSize: responsive.getFontSize(14),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        "••••••@enbraun.com.",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: responsive.getFontSize(14),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
+                  // Text(
+                  //   "A 6-digit verification code was sent\nto ••••••@enbraun.com.",
+                  //   textAlign: TextAlign.center,
+                  //   style: TextStyle(
+                  //     color: Colors.black54,
+                  //     fontSize: responsive.getFontSize(14),
+                  //     fontWeight: FontWeight.w500,
+                  //     letterSpacing: -0.32,
+                  //   ),
+                  // ),
                   SizedBox(height: responsive.getHeight(24)),
                   // OTP Input Field
                   TextFieldCustom(
@@ -237,7 +259,9 @@ class _OTPScreenState extends State<OTPScreen> {
                     width: double.infinity,
                     height: responsive.getHeight(52),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        //here you can navigate to login screen
+                      },
                       style: TextButton.styleFrom(
                         backgroundColor:
                             Colors.transparent, // same default background color

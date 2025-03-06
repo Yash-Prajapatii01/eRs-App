@@ -101,6 +101,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   responsive, 494, 69, Color.fromRGBO(245, 240, 254, 0.6)),
             ),
 
+            //left below oval shape
+            Positioned(
+              top: responsive.getHeight(348),
+              left: responsive.getWidth(-410),
+              child: buildOvalShape(
+                  responsive, 494, 59, Color.fromRGBO(242, 249, 255, 1)),
+            ),
+
             Positioned(
               top: responsive.getHeight(124.26),
               left: responsive.getWidth(99.35),
@@ -228,7 +236,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             width: double.infinity,
                             height: responsive.getHeight(52),
                             child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                //here yoou can navigate to the login page
+                              },
                               style: TextButton.styleFrom(
                                 backgroundColor: Colors
                                     .transparent, // same default background color
