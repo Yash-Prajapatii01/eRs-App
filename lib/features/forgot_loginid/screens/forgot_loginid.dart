@@ -76,6 +76,16 @@ class _ForgotLoginIdState extends State<ForgotLoginId> {
     final responsive = ResponsiveLayout(context);
 
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            // Navigator.pop(context); // Navigate back
+          },
+        ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Stack(
