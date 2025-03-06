@@ -55,15 +55,18 @@ class _ForgotLoginIdState extends State<ForgotLoginId> {
       if (email == "enbraun@enbraun.com") {
         // Special test case: Navigate to the next screen
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SuccessScreen(
-              message: "Your login ID has been sent to your email address. Check your email for the login ID.",
-            )));
+            context,
+            MaterialPageRoute(
+                builder: (context) => SuccessScreen(
+                      message:
+                          "Your login ID has been sent to your email address. Check your email for the login ID.",
+                    )));
       } else if (!emailRegex.hasMatch(email)) {
         _errorMessages = "Invalid email format!";
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Congratulations and bye"),)
-       );   // Proceed with authentication logic
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("Congratulations and bye"),
+        )); // Proceed with authentication logic
       }
     });
   }
@@ -141,7 +144,7 @@ class _ForgotLoginIdState extends State<ForgotLoginId> {
                 width: responsive.getWidth(178),
                 height: responsive.getHeight(30),
                 child: Text(
-                  "Forgot Password",
+                  "Forgot Login ID",
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: responsive.getFontSize(22),
