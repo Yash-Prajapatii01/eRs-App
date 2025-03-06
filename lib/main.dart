@@ -1,5 +1,6 @@
 import 'package:ers_app/common/common_screens/success_screen.dart';
 import 'package:ers_app/common/theme/themeData.dart';
+import 'package:ers_app/features/sso/screens/LoginSSOScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'eResources Scheduler',
       theme: appTheme,
-      home: SuccessScreen(),
+      home: SSOScreen(),
     );
   }
 }
