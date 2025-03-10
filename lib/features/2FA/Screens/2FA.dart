@@ -304,7 +304,6 @@
 //   bool shouldRepaint(CustomPainter oldDelegate) => false;
 // }
 
-
 import 'package:ers_app/common/widgets/Responsive_Layout.dart';
 import 'package:ers_app/common/widgets/buildOvalShapes.dart';
 import 'package:ers_app/common/widgets/custom_button.dart';
@@ -467,64 +466,68 @@ class _TwoFactorAuthScreenState extends State<TwoFactorAuthScreen> {
                               borderRadius: BorderRadius.circular(
                                   responsive.getRadius(16)),
                             ),
-                            child: SizedBox(
-                              width: responsive.getWidth(24),
-                              height: responsive.getHeight(24),
-                              child: Focus(
-                                onKeyEvent: (node, event) {
-                                  if (event is KeyDownEvent &&
-                                      event.logicalKey ==
-                                          LogicalKeyboardKey.backspace) {
-                                    if (_controllers[index].text.isEmpty &&
-                                        index > 0) {
-                                      setState(() {
-                                        _controllers[index - 1].clear();
-                                      });
-                                      FocusScope.of(context)
-                                          .requestFocus(_focusNodes[index - 1]);
-                                      return KeyEventResult.handled;
+                            child: Center(
+                              child: SizedBox(
+                                width: responsive.getWidth(24),
+                                height: responsive.getHeight(24),
+                                child: Focus(
+                                  onKeyEvent: (node, event) {
+                                    if (event is KeyDownEvent &&
+                                        event.logicalKey ==
+                                            LogicalKeyboardKey.backspace) {
+                                      if (_controllers[index].text.isEmpty &&
+                                          index > 0) {
+                                        setState(() {
+                                          _controllers[index - 1].clear();
+                                        });
+                                        FocusScope.of(context)
+                                            .requestFocus(_focusNodes[index - 1]);
+                                        return KeyEventResult.handled;
+                                      }
                                     }
-                                  }
-                                  return KeyEventResult.ignored;
-                                },
-                                child: TextField(
-                                  controller: _controllers[index],
-                                  focusNode: _focusNodes[index],
-                                  keyboardType: TextInputType.number,
-                                  textAlign: TextAlign.center,
-                                  maxLength: 1,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly
-                                  ],
-                                  cursorHeight: responsive.getHeight(18),
-                                  style: TextStyle(
-                                    fontSize: responsive.getFontSize(18),
-                                    fontWeight: FontWeight.bold,
-                                    color: _controllers[index].text.isEmpty &&
-                                            !_focusNodes[index].hasFocus
-                                        ? Colors.transparent
-                                        : null,
-                                  ),
-                                  decoration: InputDecoration(
-                                    counterText: "",
-                                    border: InputBorder.none,
-                                    filled: true,
-                                    fillColor: Colors.transparent,
-                                    contentPadding: EdgeInsets.zero,
-                                    hintText: _controllers[index]
-                                                .text
-                                                .isEmpty &&
-                                            !_focusNodes[index].hasFocus
-                                        ? '-' // Use em-dash or custom character
-                                        : '',
-                                    hintStyle: TextStyle(
-                                      color: Colors.grey,
-                                      letterSpacing: 2,
+                                    return KeyEventResult.ignored;
+                                  },
+                                  child: TextField(
+                                    controller: _controllers[index],
+                                    focusNode: _focusNodes[index],
+                                    keyboardType: TextInputType.number,
+                                    textAlign: TextAlign.center,
+                                    maxLength: 1,
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.digitsOnly
+                                    ],
+                                    cursorHeight: responsive.getHeight(18),
+                                    style: TextStyle(
                                       fontSize: responsive.getFontSize(18),
+                                      fontWeight: FontWeight.bold,
+                                      height: 1,
+                                      color: _controllers[index].text.isEmpty &&
+                                              !_focusNodes[index].hasFocus
+                                          ? Colors.transparent
+                                          : null,
                                     ),
+                                    decoration: InputDecoration(
+                                      counterText: "",
+                                      border: InputBorder.none,
+                                      filled: true,
+                                      fillColor: Colors.transparent,
+                                      contentPadding: EdgeInsets.zero,
+                                      hintText: _controllers[index]
+                                                  .text
+                                                  .isEmpty &&
+                                              !_focusNodes[index].hasFocus
+                                          ? '-' // Use em-dash or custom character
+                                          : '',
+                                      hintStyle: TextStyle(
+                                        color: Colors.grey,
+                                        // letterSpacing: 2,
+                                        height: 1,
+                                        fontSize: responsive.getFontSize(18),
+                                      ),
+                                    ),
+                                    onChanged: (value) =>
+                                        _onOtpChanged(value, index),
                                   ),
-                                  onChanged: (value) =>
-                                      _onOtpChanged(value, index),
                                 ),
                               ),
                             ),
