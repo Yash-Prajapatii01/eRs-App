@@ -388,6 +388,15 @@ class _TwoFactorAuthScreenState extends State<TwoFactorAuthScreen> {
     final responsive = ResponsiveLayout(context);
 
     return Scaffold(
+      appBar: AppBar(
+        leading: GestureDetector(
+            onDoubleTap: () => ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text("Double tap detected!"))),
+            onTap: () {
+              // Navigator.of(context).pop();
+            },
+            child: Icon(Icons.arrow_back)),
+      ),
       body: SafeArea(
         child: Stack(
           children: [
