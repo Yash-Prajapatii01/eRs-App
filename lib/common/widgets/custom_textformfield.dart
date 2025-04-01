@@ -31,7 +31,7 @@ class TextFieldCustom extends StatelessWidget {
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
           hintText: hintText,
-          hintStyle:TextStyle(
+          hintStyle: TextStyle(
             color: Color.fromRGBO(95, 95, 95, 0.39),
             fontSize: responsive.getFontSize(14),
             fontWeight: FontWeight.w400,
@@ -41,7 +41,7 @@ class TextFieldCustom extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(responsive.getRadius(5)),
-            borderSide:  BorderSide(
+            borderSide: BorderSide(
               color: Color(0xff037dff),
               width: responsive.getWidth(0.5),
             ),
@@ -55,16 +55,15 @@ class TextFieldCustom extends StatelessWidget {
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(responsive.getRadius(5)),
-            borderSide:  BorderSide(color: Colors.red, width: responsive.getWidth(0.5)),
+            borderSide:
+                BorderSide(color: Colors.red, width: responsive.getWidth(0.5)),
           ),
           // errorMaxLines: 2,
-          contentPadding:  EdgeInsets.fromLTRB(
-            responsive.getWidth(16), // Responsive padding
-            responsive.getHeight(20), //20 -> 14.5 as the text was getting clipped off due to 20 + 20 = 40
-            responsive.getWidth(16),
-            responsive.getHeight(14.5),
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: responsive.getWidth(16),
+            vertical: responsive.getHeight(14.5),
           ),
-          errorStyle:  TextStyle(height: responsive.getHeight(1.0)),
+          errorStyle: TextStyle(height: responsive.getHeight(1.0)),
         ),
       ),
     );
