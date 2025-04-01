@@ -472,6 +472,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             TextFieldCustom(
                               hintText: "Login",
                               obscureText: false,
+                              // errorText: _errorMessages != null ? ' ' : null,
                               controller: _loginController,
                               prefixIcon: Transform.scale(
                                 scale: 0.5,

@@ -70,7 +70,7 @@ class RedisRemoteDataSource {
       ]);
 
       if (storedPassword == null) {
-        return ("Login ID not found !!");
+        return ("Login ID not found !");
         // return false;
       }
 
@@ -83,7 +83,7 @@ class RedisRemoteDataSource {
         // return true;
       }
 
-      return ("Invalid Password !!");
+      return ("Invalid Password !");
       // return false;
     } catch (e) {
       return ("Error during login: $e");
