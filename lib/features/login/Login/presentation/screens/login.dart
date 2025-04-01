@@ -276,10 +276,12 @@ import 'package:ers_app/common/widgets/Responsive_Layout.dart';
 import 'package:ers_app/common/widgets/custom_button.dart';
 import 'package:ers_app/common/widgets/custom_text.dart';
 import 'package:ers_app/common/widgets/custom_textformfield.dart';
+import 'package:ers_app/features/login/Login/presentation/bloc/login_auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../HomeScreen.dart';
+import '../../../../../HomeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -314,269 +316,306 @@ class _LoginScreenState extends State<LoginScreen> {
       if (_errorMessages != null) {
         _errorMessages = null;
       }
-
       // will check for the content been entered or not
       _checkforbutton = (_loginController.text.isNotEmpty &&
           _passwordController.text.isNotEmpty);
     });
   }
 
-  void _validateFields() {
-    setState(() {
-      _errorMessages = null;
-      //Here we can define the API auth logic
-      if (_loginController.text != "enbraun" ||
-          _passwordController.text != "enbraun") {
-        _errorMessages = "Invalid Login or Password";
-      } else {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Homescreen()));
-      }
-    });
-  }
+  // void _validateFields() {
+  //   setState(() {
+  //     _errorMessages = null;
+  //     //Here we can define the API auth logic
+  //     if (_loginController.text != "enbraun" ||
+  //         _passwordController.text != "enbraun") {
+  //       _errorMessages = "Invalid Login or Password";
+  //     } else {
+  //       Navigator.push(
+  //           context, MaterialPageRoute(builder: (context) => Homescreen()));
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     final responsive = ResponsiveLayout(context);
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            //for the below banner image
-            Positioned.fill(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Image.asset(
-                  'assets/bottomCenter.png',
-                  fit: BoxFit.cover,
+    return BlocListener<LoginAuthBloc, LoginAuthState>(
+      listener: (context, state) {
+        if (state is LoginLoading) {
+          // ScaffoldMessenger.of(context).showSnackBar(
+          //   const SnackBar(
+          //     content: Text("Loading..."),
+          //     duration: Duration(milliseconds: 200),
+          //   ),
+          // );
+        } else if (state is LoginSucess) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Homescreen()),
+          );
+        } else if (state is LoginFailure) {
+          setState(() {
+            // Here we are setting the error message
+            _errorMessages = state.errorMessage;
+          });
+        }
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: SafeArea(
+          child: Stack(
+            children: [
+              //for the below banner image
+              Positioned.fill(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Image.asset(
+                    'assets/bottomCenter.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
 
-            //left side oval shape
-            Positioned(
-              top: responsive.getHeight(103),
-              left: responsive.getWidth(-25),
-              child: Container(
-                width: responsive.getWidth(125),
-                height: responsive.getHeight(59),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(235, 229, 247, 0.2),
-                  borderRadius: BorderRadius.circular(responsive.getRadius(50)),
+              //left side oval shape
+              Positioned(
+                top: responsive.getHeight(103),
+                left: responsive.getWidth(-25),
+                child: Container(
+                  width: responsive.getWidth(125),
+                  height: responsive.getHeight(59),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(235, 229, 247, 0.2),
+                    borderRadius:
+                        BorderRadius.circular(responsive.getRadius(50)),
+                  ),
                 ),
               ),
-            ),
 
-            //right side oval shape
-            Positioned(
-              top: responsive.getHeight(187),
-              left: responsive.getWidth(310),
-              child: Container(
-                width: responsive.getWidth(494),
-                height: responsive.getHeight(58),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(255, 253, 230, 0.5),
-                  borderRadius: BorderRadius.circular(responsive.getRadius(50)),
+              //right side oval shape
+              Positioned(
+                top: responsive.getHeight(187),
+                left: responsive.getWidth(310),
+                child: Container(
+                  width: responsive.getWidth(494),
+                  height: responsive.getHeight(58),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(255, 253, 230, 0.5),
+                    borderRadius:
+                        BorderRadius.circular(responsive.getRadius(50)),
+                  ),
                 ),
               ),
-            ),
 
-            //right below oval shape
-            Positioned(
-              top: responsive.getHeight(440),
-              left: responsive.getWidth(330),
-              child: Container(
-                width: responsive.getWidth(494),
-                height: responsive.getHeight(69),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(245, 240, 254, 0.6),
-                  borderRadius: BorderRadius.circular(responsive.getRadius(50)),
+              //right below oval shape
+              Positioned(
+                top: responsive.getHeight(440),
+                left: responsive.getWidth(330),
+                child: Container(
+                  width: responsive.getWidth(494),
+                  height: responsive.getHeight(69),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(245, 240, 254, 0.6),
+                    borderRadius:
+                        BorderRadius.circular(responsive.getRadius(50)),
+                  ),
                 ),
               ),
-            ),
 
-            Positioned(
-              top: responsive.getHeight(124.26),
-              left: responsive.getWidth(99.35),
-              child: SizedBox(
-                width: responsive.getWidth(194.3),
-                height: responsive.getHeight(74.73),
-                child: Image.asset(
-                  'assets/ers_logo_banner.png',
-                  fit: BoxFit.contain,
+              Positioned(
+                top: responsive.getHeight(124.26),
+                left: responsive.getWidth(99.35),
+                child: SizedBox(
+                  width: responsive.getWidth(194.3),
+                  height: responsive.getHeight(74.73),
+                  child: Image.asset(
+                    'assets/ers_logo_banner.png',
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-            ),
 
-            Positioned(
-              top: responsive.getHeight(231),
-              left: responsive.getWidth(80),
-              child: SizedBox(
-                width: responsive.getWidth(232),
-                height: responsive.getHeight(30),
-                child: Text(
-                  "Login to your account",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: responsive.getFontSize(22),
-                      fontWeight: FontWeight.w400,
-                      letterSpacing: -0.32),
+              Positioned(
+                top: responsive.getHeight(231),
+                left: responsive.getWidth(80),
+                child: SizedBox(
+                  width: responsive.getWidth(232),
+                  height: responsive.getHeight(30),
+                  child: Text(
+                    "Login to your account",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: responsive.getFontSize(22),
+                        fontWeight: FontWeight.w400,
+                        letterSpacing: -0.32),
+                  ),
                 ),
               ),
-            ),
 
-            Positioned(
-              top: responsive.getHeight(302),
-              left: responsive.getWidth(16),
-              child: SizedBox(
-                width:
-                    MediaQuery.of(context).size.width - responsive.getWidth(32),
-                child: Padding(
-                  padding: EdgeInsets.all(responsive.getWidth(16.0)),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Column(
-                        children: [
-                          TextFieldCustom(
-                            hintText: "Login",
-                            obscureText: false,
-                            controller: _loginController,
-                            prefixIcon: Transform.scale(
-                              scale: 0.5,
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: responsive.getHeight(2),
-                                    horizontal: responsive.getWidth(4)),
-                                child: Image.asset(
-                                  "assets/user.png",
-                                  width: responsive.getWidth(24),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: responsive.getHeight(20),
-                          ),
-                          TextFieldCustom(
-                            hintText: "Password",
-                            obscureText: true,
-                            controller: _passwordController,
-                            prefixIcon: Transform.scale(
+              Positioned(
+                top: responsive.getHeight(302),
+                left: responsive.getWidth(16),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width -
+                      responsive.getWidth(32),
+                  child: Padding(
+                    padding: EdgeInsets.all(responsive.getWidth(16.0)),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Column(
+                          children: [
+                            TextFieldCustom(
+                              hintText: "Login",
+                              obscureText: false,
+                              controller: _loginController,
+                              prefixIcon: Transform.scale(
                                 scale: 0.5,
                                 child: Container(
                                   padding: EdgeInsets.symmetric(
                                       vertical: responsive.getHeight(2),
                                       horizontal: responsive.getWidth(4)),
                                   child: Image.asset(
-                                    "assets/password.png",
+                                    "assets/user.png",
                                     width: responsive.getWidth(24),
                                   ),
-                                )),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: responsive.getHeight(12),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CustomText(
-                            text: "Forgot Login ID?",
-                            ontap: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text("Forgot Login ID tapped"),
-                                  duration: Duration(milliseconds: 200),
                                 ),
-                              );
-                            },
-                          ),
-                          CustomText(
-                            text: "Forgot Password?",
-                            ontap: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text("Forgot Password tapped"),
-                                  duration: Duration(milliseconds: 200),
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: (_errorMessages == null)
-                            ? responsive.getHeight(42)
-                            : responsive.getHeight(19),
-                      ),
-                      (_errorMessages != null)
-                          ? Text(
-                              _errorMessages!,
-                              style: TextStyle(
-                                fontFamily: GoogleFonts.inter().fontFamily,
-                                fontWeight: FontWeight.w400,
-                                color: Color.fromRGBO(242, 48, 48, 1),
-                                fontSize: responsive.getFontSize(14),
                               ),
+                            ),
+                            SizedBox(
+                              height: responsive.getHeight(20),
+                            ),
+                            TextFieldCustom(
+                              hintText: "Password",
+                              obscureText: true,
+                              controller: _passwordController,
+                              prefixIcon: Transform.scale(
+                                  scale: 0.5,
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: responsive.getHeight(2),
+                                        horizontal: responsive.getWidth(4)),
+                                    child: Image.asset(
+                                      "assets/password.png",
+                                      width: responsive.getWidth(24),
+                                    ),
+                                  )),
                             )
-                          : SizedBox.shrink(),
-                      SizedBox(
-                        height: (_errorMessages == null)
-                            ? 0
-                            : responsive.getHeight(19),
-                      ),
-                      Column(
+                          ],
+                        ),
+                        SizedBox(
+                          height: responsive.getHeight(12),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CustomText(
+                              text: "Forgot Login ID?",
+                              ontap: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Forgot Login ID tapped"),
+                                    duration: Duration(milliseconds: 200),
+                                  ),
+                                );
+                              },
+                            ),
+                            CustomText(
+                              text: "Forgot Password?",
+                              ontap: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Forgot Password tapped"),
+                                    duration: Duration(milliseconds: 200),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: (_errorMessages == null)
+                              ? responsive.getHeight(42)
+                              : responsive.getHeight(19),
+                        ),
+                        (_errorMessages != null)
+                            ? Text(
+                                _errorMessages!,
+                                style: TextStyle(
+                                  fontFamily: GoogleFonts.inter().fontFamily,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromRGBO(242, 48, 48, 1),
+                                  fontSize: responsive.getFontSize(14),
+                                ),
+                              )
+                            : SizedBox.shrink(),
+                        SizedBox(
+                          height: (_errorMessages == null)
+                              ? 0
+                              : responsive.getHeight(19),
+                        ),
+                        Column(
+                          children: [
+                            ButtonCustom(
+                              onPressed: _checkforbutton
+                                  ? () {
+                                      context.read<LoginAuthBloc>().add(
+                                            LoginDetailsSubmitted(
+                                              loginid: _loginController.text,
+                                              password:
+                                                  _passwordController.text,
+                                            ),
+                                          );
+                                    }
+                                  : null,
+                              // here we are doing it disable on basis of the _checkforButton basis
+                              text: "Login",
+                              // elevation: 5,
+                              backgroundColor: _checkforbutton
+                                  ? Color.fromRGBO(3, 125, 221, 1)
+                                  : Color.fromRGBO(211, 220, 230, 1),
+                            ),
+                            SizedBox(
+                              height: responsive.getHeight(20),
+                            ),
+                            ButtonCustom(
+                              onPressed: () {},
+                              text: "Single Sign on",
+                              backgroundColor: Colors.white,
+                              textColor: Colors.black,
+                              iconAsImage: "assets/sso-icon.png",
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Positioned.fill(
+                top: responsive.getHeight(780),
+                left: responsive.getWidth(39),
+                child: SizedBox(
+                  width: responsive.getWidth(314),
+                  height: responsive.getHeight(39),
+                  child: Text.rich(
+                    TextSpan(
+                        text: "Enbraun Technologies Private Limited",
                         children: [
-                          ButtonCustom(
-                            onPressed: _checkforbutton ? _validateFields : null,
-                            // here we are doing it disable on basis of the _checkforButton basis
-                            text: "Login",
-                            // elevation: 5,
-                            backgroundColor: _checkforbutton
-                                ? Color.fromRGBO(3, 125, 221, 1)
-                                : Color.fromRGBO(211, 220, 230, 1),
-                          ),
-                          SizedBox(
-                            height: responsive.getHeight(20),
-                          ),
-                          ButtonCustom(
-                            onPressed: () {},
-                            text: "Single Sign on",
-                            backgroundColor: Colors.white,
-                            textColor: Colors.black,
-                            iconAsImage: "assets/sso-icon.png",
-                          ),
-                        ],
-                      )
-                    ],
+                          TextSpan(
+                              text: " © 2025",
+                              style: TextStyle(
+                                  color: Color.fromRGBO(51, 51, 51, 0.5))),
+                        ]),
+                    style: TextStyle(
+                      color: Color.fromRGBO(51, 51, 51, 0.5),
+                      fontSize: responsive.getFontSize(14),
+                    ),
                   ),
                 ),
-              ),
-            ),
-            Positioned.fill(
-              top: responsive.getHeight(780),
-              left: responsive.getWidth(39),
-              child: SizedBox(
-                width: responsive.getWidth(314),
-                height: responsive.getHeight(39),
-                child: Text.rich(
-                  TextSpan(text: "Enbraun Technologies Private Limited",
-                  children: [
-                    TextSpan(text: " © 2025", style: TextStyle(color: Color.fromRGBO(51, 51, 51, 0.5))),
-                  ]
-                  ),
-                  style: TextStyle(
-                    color: Color.fromRGBO(51, 51, 51, 0.5),
-                    fontSize: responsive.getFontSize(14),
-                  ),
-                ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
