@@ -583,7 +583,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: responsive.getHeight(20),
                             ),
                             ButtonCustom(
-                              onPressed: () {},
+                              onPressed: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Single Sign on tapped"),
+                                    duration: Duration(milliseconds: 200),
+                                  ),
+                                );
+                              },
                               text: "Single Sign on",
                               backgroundColor: Colors.white,
                               textColor: Colors.black,

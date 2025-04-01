@@ -13,7 +13,7 @@ class RemotedatasourceImpl {
   // }
   //above is used for the signup feature.
 
-  Future<bool> login(String loginid, String password) async {
+  Future<String> login(String loginid, String password) async {
     return await redisRemoteDataSource.login(loginid, password);
   }
 

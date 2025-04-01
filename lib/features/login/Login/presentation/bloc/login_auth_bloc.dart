@@ -7,9 +7,7 @@ part 'login_auth_state.dart';
 
 class LoginAuthBloc extends Bloc<LoginAuthEvent, LoginAuthState> {
   final LoginUsecase loginUsecase;
-  LoginAuthBloc(this.loginUsecase
-      )
-      : super(LoginAuthInitial()) {
+  LoginAuthBloc(this.loginUsecase) : super(LoginAuthInitial()) {
     on<LoginDetailsSubmitted>(_onLoginDetailsSubmitted);
   }
 
@@ -17,14 +15,15 @@ class LoginAuthBloc extends Bloc<LoginAuthEvent, LoginAuthState> {
       LoginDetailsSubmitted event, Emitter<LoginAuthState> emit) async {
     emit(LoginLoading());
     try {
-      final bool isLoginSuccess = await loginUsecase.login(event.loginid, event.password);
-      if (isLoginSuccess) {
+      final String LoginResult =
+          await loginUsecase.login(event.loginid, event.password);
+      if (LoginResult == 'Logged In Successfully') {
         emit(LoginSucess());
       } else {
-        emit(LoginFailure(errorMessage: 'Invalid login details'));
+        emit(LoginFailure(errorMessage: LoginResult));
       }
     } catch (e) {
-      emit(LoginFailure(errorMessage: 'Something went wrong'));
+      emit(LoginFailure(errorMessage: 'Something went wrong !!'));
     }
   }
 }

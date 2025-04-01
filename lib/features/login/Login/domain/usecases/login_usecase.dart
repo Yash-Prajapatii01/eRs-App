@@ -4,7 +4,7 @@ class LoginUsecase {
   final RemotedatasourceImpl remotedatasourceImpl;
   LoginUsecase(this.remotedatasourceImpl);
 
-  Future<bool> login(String loginid, String password) async {
+  Future<String> login(String loginid, String password) async {
     return await remotedatasourceImpl.login(loginid, password);
   }
 }
