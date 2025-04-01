@@ -298,9 +298,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
+    super.dispose();
     _loginController.dispose();
     _passwordController.dispose();
-    super.dispose();
+    
   }
 
   @override
@@ -350,6 +351,9 @@ class _LoginScreenState extends State<LoginScreen> {
           //   ),
           // );
         } else if (state is LoginSucess) {
+          // Here we are clearing the text fields
+          _loginController.clear();
+          _passwordController.clear();
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => Homescreen()),
