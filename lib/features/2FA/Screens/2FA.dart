@@ -388,6 +388,7 @@ class _TwoFactorAuthScreenState extends State<TwoFactorAuthScreen> {
     final responsive = ResponsiveLayout(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: GestureDetector(
             onDoubleTap: () => ScaffoldMessenger.of(context)
@@ -450,127 +451,156 @@ class _TwoFactorAuthScreenState extends State<TwoFactorAuthScreen> {
             // Main content
             Positioned(
               top: responsive.getHeight(231),
-              left: responsive.getWidth(28),
-              child: SizedBox(
-                width: responsive.getWidth(337),
-                height: responsive.getHeight(300), // Increased height
+              left: 0,
+              right: 0,
+              child: Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: responsive.getWidth(16)),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Two Factor Authentication",
-                      style: TextStyle(
-                          fontSize: responsive.getFontSize(22),
-                          fontWeight: FontWeight.w400),
-                    ),
-                    SizedBox(height: responsive.getHeight(12)),
-                    Text(
-                      "Enter the 6-digit verification code from your authenticator app.",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: responsive.getFontSize(14),
-                          color: Color.fromRGBO(51, 51, 51, 0.5)),
-                    ),
-                    SizedBox(height: responsive.getHeight(21)),
-
-                    // OTP fields - Adjusted to fit within container
                     SizedBox(
                       width: responsive.getWidth(337),
-                      height: responsive.getHeight(56),
-                      child: Row(
+                      // height: responsive.getHeight(300), // Increased height
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(6, (index) {
-                          bool isFilled = _controllers[index].text.isNotEmpty;
-                          // Smaller fixed size for OTP boxes
-                          return Container(
-                            width: responsive.getWidth(45), // Reduced from 52
-                            height: responsive.getHeight(48), // Reduced from 56
-                            margin: EdgeInsets.symmetric(
-                                horizontal:
-                                    responsive.getWidth(5)), // Reduced from 5
-                            decoration: BoxDecoration(
-                              color: isFilled
-                                  ? Color.fromRGBO(233, 242, 251, 1)
-                                  : Colors.white,
-                              border: Border.all(
-                                  color: isFilled
-                                      ? Colors.blue
-                                      : Colors.grey.shade400,
-                                  width: responsive.getWidth(0.5)),
-                              borderRadius: BorderRadius.circular(
-                                  responsive.getRadius(16)),
-                            ),
-                            child: SizedBox(
-                              width: responsive.getWidth(24),
-                              height: responsive.getHeight(24),
-                              child: Focus(
-                                onKeyEvent: (node, event) {
-                                  if (event is KeyDownEvent &&
-                                      event.logicalKey ==
-                                          LogicalKeyboardKey.backspace) {
-                                    if (_controllers[index].text.isEmpty &&
-                                        index > 0) {
-                                      setState(() {
-                                        _controllers[index - 1].clear();
-                                      });
-                                      FocusScope.of(context)
-                                          .requestFocus(_focusNodes[index - 1]);
-                                      return KeyEventResult.handled;
-                                    }
-                                  }
-                                  return KeyEventResult.ignored;
-                                },
-                                child: TextField(
-                                  controller: _controllers[index],
-                                  focusNode: _focusNodes[index],
-                                  keyboardType: TextInputType.number,
-                                  textAlign: TextAlign.center,
-                                  maxLength: 1,
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly
-                                  ],
-                                  cursorHeight: responsive.getHeight(18),
-                                  style: TextStyle(
-                                    fontSize: responsive.getFontSize(18),
-                                    fontWeight: FontWeight.bold,
-                                    height: 1,
-                                    color: _controllers[index].text.isEmpty &&
-                                            !_focusNodes[index].hasFocus
-                                        ? Colors.transparent
-                                        : null,
+                        children: [
+                          Text(
+                            "Two Factor Authentication",
+                            style: TextStyle(
+                                fontSize: responsive.getFontSize(22),
+                                fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: responsive.getHeight(12)),
+                          Text(
+                            "To continue, please enter the 6-digit verification code from your authenticator app.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: responsive.getFontSize(14),
+                                color: Color.fromRGBO(51, 51, 51, 0.7)),
+                          ),
+                          SizedBox(height: responsive.getHeight(21)),
+
+                          // OTP fields - Adjusted to fit within container
+                          SizedBox(
+                            width: responsive.getWidth(337),
+                            height: responsive.getHeight(56),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: List.generate(6, (index) {
+                                bool isFilled =
+                                    _controllers[index].text.isNotEmpty;
+                                // Smaller fixed size for OTP boxes
+                                return Container(
+                                  width: responsive
+                                      .getWidth(52), // Reduced from 52
+                                  height: responsive
+                                      .getHeight(56), // Reduced from 56
+                                  margin: EdgeInsets.fromLTRB(
+                                      0, 0, responsive.getWidth(4), 0),
+                                  decoration: BoxDecoration(
+                                    color: isFilled
+                                        ? Color.fromRGBO(233, 242, 251, 1)
+                                        : Colors.white,
+                                    border: Border.all(
+                                        color: isFilled
+                                            ? Colors.blue
+                                            : Colors.grey.shade400,
+                                        width: responsive.getWidth(0.5)),
+                                    borderRadius: BorderRadius.circular(
+                                        responsive.getRadius(16)),
                                   ),
-                                  decoration: InputDecoration(
-                                    counterText: "",
-                                    border: InputBorder.none,
-                                    filled: true,
-                                    fillColor: Colors.transparent,
-                                    contentPadding: EdgeInsets.zero,
-                                    hintText: _controllers[index]
-                                                .text
-                                                .isEmpty &&
-                                            !_focusNodes[index].hasFocus
-                                        ? '-' // Use em-dash or custom character
-                                        : '',
-                                    hintStyle: TextStyle(
-                                      color: Colors.grey,
-                                      // letterSpacing: 2,
-                                      height: 1,
-                                      fontSize: responsive.getFontSize(18),
+                                  child: Center(
+                                    child: Focus(
+                                      onKeyEvent: (node, event) {
+                                        if (event is KeyDownEvent &&
+                                            event.logicalKey ==
+                                                LogicalKeyboardKey.backspace) {
+                                          if (_controllers[index]
+                                                  .text
+                                                  .isEmpty &&
+                                              index > 0) {
+                                            setState(() {
+                                              _controllers[index - 1].clear();
+                                            });
+                                            FocusScope.of(context).requestFocus(
+                                                _focusNodes[index - 1]);
+                                            return KeyEventResult.handled;
+                                          }
+                                        }
+                                        return KeyEventResult.ignored;
+                                      },
+                                      child: Center(
+                                        child: SizedBox(
+                                          width: responsive
+                                              .getWidth(24), // Reduced from 24
+                                          height: responsive
+                                              .getHeight(24), // Reduced from 24
+                                          child: TextField(
+                                            controller: _controllers[index],
+                                            focusNode: _focusNodes[index],
+                                            keyboardType: TextInputType.number,
+                                            textAlign: TextAlign.center,
+                                            maxLength: 1,
+                                            inputFormatters: [
+                                              FilteringTextInputFormatter
+                                                  .digitsOnly
+                                            ],
+                                            // cursorHeight: responsive.getHeight(18),
+                                            style: TextStyle(
+                                              fontSize:
+                                                  responsive.getFontSize(18),
+                                              fontWeight: FontWeight.bold,
+                                              height: 1,
+                                              color: _controllers[index]
+                                                          .text
+                                                          .isEmpty &&
+                                                      !_focusNodes[index]
+                                                          .hasFocus
+                                                  ? Colors.transparent
+                                                  : null,
+                                            ),
+                                            decoration: InputDecoration(
+                                              counterText: " ",
+                                              border: InputBorder.none,
+                                              filled: true,
+                                              fillColor: Colors.transparent,
+                                              contentPadding: EdgeInsets.zero,
+                                              hintText: _controllers[index]
+                                                          .text
+                                                          .isEmpty &&
+                                                      !_focusNodes[index]
+                                                          .hasFocus
+                                                  ? '-' // Use em-dash or custom character
+                                                  : '',
+                                              hintStyle: TextStyle(
+                                                color: Colors.grey,
+                                                // letterSpacing: 2,
+                                                height: 1,
+                                                fontSize:
+                                                    responsive.getFontSize(18),
+                                              ),
+                                            ),
+                                            onChanged: (value) =>
+                                                _onOtpChanged(value, index),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  onChanged: (value) =>
-                                      _onOtpChanged(value, index),
-                                ),
-                              ),
+                                );
+                              }),
                             ),
-                          );
-                        }),
+                          ),
+                        ],
                       ),
                     ),
-
-                    SizedBox(height: responsive.getHeight(30)),
+                    SizedBox(height: responsive.getHeight(42)),
                     SizedBox(
-                      width: responsive.getWidth(337),
+                      // width: responsive.getWidth(337),
+                      width: double.infinity,
                       height: responsive.getHeight(52),
                       child: ButtonCustom(
                         onPressed: _isButtonEnabled ? _SubmitOtp : null,
